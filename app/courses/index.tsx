@@ -10,8 +10,14 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
-        Kurssit
+      <Link
+        href={{
+          pathname: "/courses/course/[id]",
+          params: { id: "123" },
+        }}
+        style={{ fontSize: 20, color: "blue" }}
+      >
+        Pilkku
       </Link>
     </View>
   );

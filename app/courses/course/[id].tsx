@@ -1,7 +1,9 @@
 import { Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 
 export default function Index() {
+  const { id } = useLocalSearchParams();
+
   return (
     <View
       style={{
@@ -10,9 +12,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
-        Kurssit
-      </Link>
+      <Text>Kurssi {id}</Text>
     </View>
   );
 }
