@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import CorrectAnswerBanner from "./correct-answer-banner";
 import WrongAnswerBanner from "./wrong-answer-banner";
 
@@ -12,11 +12,8 @@ export default function Feedback({
   return (
     <View
       style={{
-        zIndex: 10,
         transform: [{ translateY: answer === null ? "100%" : "0%" }],
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        overflow: "hidden",
+        ...styles.container,
       }}
     >
       {answer === "correct" ? (
@@ -27,3 +24,12 @@ export default function Feedback({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    zIndex: 10,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    overflow: "hidden",
+  },
+});

@@ -1,4 +1,4 @@
-import { Text, View, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import { useState } from "react";
 import { Link, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,7 +11,7 @@ export default function Course() {
   const [answer, setAnswer] = useState<"correct" | "wrong" | null>(null);
 
   return (
-    <SafeAreaView style={{ height: "100%", backgroundColor: "white" }}>
+    <SafeAreaView style={styles.container}>
       <CourseHeader progress={20} />
 
       <CourseContent />
@@ -20,3 +20,10 @@ export default function Course() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+});
