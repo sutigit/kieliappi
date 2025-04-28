@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
 import { Link } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Index() {
+export default function Home() {
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
         justifyContent: "center",
@@ -13,6 +14,6 @@ export default function Index() {
       <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
         Kurssit
       </Link>
-    </View>
+    </SafeAreaView>
   );
 }
