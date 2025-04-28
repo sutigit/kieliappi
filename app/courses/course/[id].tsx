@@ -1,18 +1,14 @@
 import { Text, View } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import CourseHeader from "@/app/components/course-header";
 
-export default function Index() {
+export default function Course() {
   const { id } = useLocalSearchParams();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Kurssi {id}</Text>
-    </View>
+    <SafeAreaView>
+      <CourseHeader progress={20} />
+    </SafeAreaView>
   );
 }

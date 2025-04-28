@@ -8,14 +8,14 @@ export default function RootLayout() {
           backgroundColor: "#fefefe",
         },
         headerTintColor: "#333",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
       }}
     >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="courses" />
-      <Stack.Screen name="courses/course/[id]" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="courses" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="courses/course/[id]"
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 }
