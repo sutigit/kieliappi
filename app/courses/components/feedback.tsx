@@ -12,7 +12,12 @@ export default function Feedback({
   return (
     <View
       style={{
-        transform: [{ translateY: answer === null ? "100%" : "0%" }],
+        transform: [
+          {
+            translateY:
+              answer === "correct" || answer === "wrong" ? "0%" : "100%",
+          },
+        ],
         ...styles.container,
       }}
     >
@@ -27,6 +32,10 @@ export default function Feedback({
 
 const styles = StyleSheet.create({
   container: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     zIndex: 10,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

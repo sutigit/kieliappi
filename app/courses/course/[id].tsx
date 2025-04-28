@@ -23,7 +23,10 @@ export default function Course() {
 
 const styles = StyleSheet.create({
   container: {
+    position: "relative",
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
     backgroundColor: "white",
   },
 });
