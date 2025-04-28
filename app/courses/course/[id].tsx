@@ -8,7 +8,7 @@ import CourseContent from "../components/course-content";
 
 export default function Course() {
   const { id } = useLocalSearchParams();
-  const [answer, setAnswer] = useState<"correct" | "wrong" | null>(null);
+  const [answer, setAnswer] = useState<"correct" | "wrong" | null>("correct");
 
   return (
     <SafeAreaView style={styles.container}>

@@ -1,6 +1,10 @@
 import { ScrollView, View, Text } from "react-native";
 import Button from "@/app/components/button";
 
+const content = {
+  title: "Pilkku",
+};
+
 export default function CourseContent() {
   return (
     <ScrollView
@@ -28,7 +32,7 @@ export default function CourseContent() {
             marginBottom: 20,
           }}
         >
-          Kurssin sisältö
+          Pilkku
         </Text>
 
         <Text
