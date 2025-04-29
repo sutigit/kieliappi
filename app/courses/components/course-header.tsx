@@ -2,20 +2,11 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Icons from "@expo/vector-icons/Ionicons";
 
-interface Frame {
-  name: number;
-  bg: string;
-  height: number;
-}
-interface Content {
-  frames: Frame[];
-}
-
 export default function CourseHeader({
   content,
   progress,
 }: {
-  content: Content;
+  content: any;
   progress: number;
 }) {
   const [progressBar, setProgressBar] = useState(0);

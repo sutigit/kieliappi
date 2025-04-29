@@ -1,29 +1,19 @@
-import { useEffect, useState } from "react";
-import { ScrollView, View, Text } from "react-native";
-import Button from "@/app/components/button";
-import Feedback from "../components/feedback";
+import { useEffect, useState, useRef } from "react";
+import { ScrollView, View } from "react-native";
 import Frame from "./frame";
-
-interface Frame {
-  name: number;
-  bg: string;
-  height: number;
-}
-interface Content {
-  frames: Frame[];
-}
 
 export default function CourseContent({
   content,
   progress,
   setProgress,
 }: {
-  content: Content;
+  content: any;
   progress: number;
   setProgress: (progress: number) => void;
 }) {
   const [containerHeight, setContainerHeight] = useState(0);
-  const [frames, setFrames] = useState<Frame[]>([]);
+  const [frames, setFrames] = useState<any[]>([]);
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     const visibeFrames = content.frames.slice(0, progress);
@@ -39,11 +29,15 @@ export default function CourseContent({
       }}
     >
       <ScrollView
-        style={{
-          flex: 1,
-        }}
-        contentContainerStyle={{
-          flexGrow: 1,
+        ref={scrollViewRef}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        onContentSizeChange={() => {
+          if (scrollViewRef.current) {
+            scrollViewRef.current.scrollToEnd({
+              animated: true,
+            });
+          }
         }}
       >
         {frames.map((frame, index) => (

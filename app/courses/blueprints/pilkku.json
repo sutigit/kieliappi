@@ -1,17 +1,18 @@
 {
-    "start": {
-        "title":"Pilkku",
-        "image": "",
-        "text": [
-            "Pilkku on laalaalaa",
-            "Sitten pilkku on myös joojoojoo"
-        ]
-    },
     "frames": [
         {
+            "title":"Pilkku",
+            "image": "",
             "text": [
                 "Pilkku on laalaalaa",
                 "Sitten pilkku on myös joojoojoo"
+            ]
+        },
+        {
+            "text": [
+                "Pilkku on laalaalaa",
+                "Sitten pilkku on myös joojoojoo",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component."
             ],
             "example": [
                 "esimerkki 1",
@@ -20,7 +21,74 @@
         },
         {
             "text": [
+                "Harjoitellaan. Valitse oikea vastausvaihtoehto.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component."
+            ],
+            "exercise": {
+                "id": "1111",
+                "type": "selection",
+                "options": [
+                    "answer-1",
+                    "answer-2",
+                    "answer-3"
+                ],
+                "answer": "answer-2",
+                "points": 5,
+                "explanation":"Because it is what it is",
+                "response": {
+                    "correct-answer": "Aivan oikein!",
+                    "wrong-answer": "Pilkku on siis joskus hankala."
+                }
+            }
+        },
+        {
+            "text": [
+                "Ja sitten lisää selitystä jee",
+                "Saitko?"
+            ],
+            "example": [
+                "esimerkki 1",
+                "esimerkki 2"
+            ],
+            "text-2": [
+                "Niin, tajusit."
+            ]
+        },
+        {
+            "text": [
                 "Harjoitellaan. Valitse oikea vastausvaihtoehto."
+            ],
+            "exercise": {
+                "id": "1112",
+                "type": "comma-drag",
+                "answer": "Pilkku on sellainen, että se tulee päälauseen ja sivulauseen väliin.",
+                "points": 10,
+                "explanation": "Because it is what it is",
+                "response": {
+                    "correct-answer": "Kyllä",
+                    "wrong-answer": ""
+                }
+            }
+        },
+        {
+            "text": [
+                "Pilkku on laalaalaa",
+                "Sitten pilkku on myös joojoojoo",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component."
+            ],
+            "example": [
+                "esimerkki 1",
+                "esimerkki 2"
+            ]   
+        },
+        {
+            "text": [
+                "Harjoitellaan. Valitse oikea vastausvaihtoehto.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component.",
+                "Reading from `value` during component render. Please ensure that you do not access the `value` property or use `get` method of a shared value while React is rendering a component."
             ],
             "exercise": {
                 "id": "1111",
@@ -68,11 +136,5 @@
                 }
             }
         }
-    ],
-    "end": {
-        "image": "",
-        "text": [
-            "Jes!"
-        ]
-    }
+    ]
 }
