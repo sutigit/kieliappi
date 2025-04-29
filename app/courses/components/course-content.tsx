@@ -1,55 +1,65 @@
+import { useState } from "react";
 import { ScrollView, View, Text } from "react-native";
 import Button from "@/app/components/button";
+import Feedback from "../components/feedback";
 
-const content = {
-  title: "Pilkku",
-};
+export default function CourseContent({ content }: { content: any }) {
+  const [containerHeight, setContainerHeight] = useState(500);
 
-export default function CourseContent() {
+  const frames = [
+    { name: 1, bg: "lightgreen", height: 200 },
+    { name: 2, bg: "lightcoral", height: 300 },
+    { name: 3, bg: "pink", height: 400 },
+    { name: 4, bg: "lightorange", height: 200 },
+    { name: 5, bg: "beige", height: 300 },
+  ];
+
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-      }}
-      contentContainerStyle={{
-        flexGrow: 1,
+    <View
+      style={{ flex: 1 }}
+      onLayout={(e) => {
+        const { height } = e.nativeEvent.layout;
+        setContainerHeight(height);
       }}
     >
-      <View
-        style={{ height: 180, width: "100%", backgroundColor: "lightgray" }}
-      ></View>
-
-      <View
+      <ScrollView
         style={{
           flex: 1,
-          padding: 30,
+        }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          backgroundColor: "lightblue",
         }}
       >
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: "bold",
-            marginBottom: 20,
-          }}
-        >
-          Pilkku
-        </Text>
+        {/* Frames */}
+        {frames.map((frame, index) => (
+          <View
+            key={index}
+            style={{
+              height:
+                index === frames.length - 1 ? containerHeight : frame.height,
+              backgroundColor: frame.bg,
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ fontSize: 24 }}>{`Frame ${frame.name}`}</Text>
+            </View>
 
-        <Text
-          style={{
-            fontSize: 16,
-            lineHeight: 24,
-            marginBottom: 20,
-          }}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Text>
-      </View>
-
-      <View style={{ padding: 30 }}>
-        <Button title="Jatka" onPress={() => {}} />
-      </View>
-    </ScrollView>
+            {index === frames.length - 1 && (
+              <View style={{ padding: 30 }}>
+                <Button title="Jatka" onPress={() => {}} />
+              </View>
+            )}
+          </View>
+        ))}
+      </ScrollView>
+      <Feedback answer={null} xp={10} />
+    </View>
   );
 }

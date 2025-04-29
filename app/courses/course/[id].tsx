@@ -6,17 +6,15 @@ import CourseHeader from "@/app/courses/components/course-header";
 import Feedback from "../components/feedback";
 import CourseContent from "../components/course-content";
 
+import content from "@/app/courses/blueprints/pilkku.json";
+
 export default function Course() {
   const { id } = useLocalSearchParams();
-  const [answer, setAnswer] = useState<"correct" | "wrong" | null>("correct");
 
   return (
     <SafeAreaView style={styles.container}>
       <CourseHeader progress={20} />
-
-      <CourseContent />
-
-      <Feedback answer={answer} xp={10} />
+      <CourseContent content={content} />
     </SafeAreaView>
   );
 }
