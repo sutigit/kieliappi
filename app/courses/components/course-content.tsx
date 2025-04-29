@@ -43,7 +43,6 @@ export default function CourseContent({
         }}
         contentContainerStyle={{
           flexGrow: 1,
-          backgroundColor: "lightblue",
         }}
       >
         {frames.map((frame, index) => (
