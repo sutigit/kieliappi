@@ -1,12 +1,37 @@
+import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Icons from "@expo/vector-icons/Ionicons";
 
-export default function CourseHeader({ progress }: { progress: number }) {
+interface Frame {
+  name: number;
+  bg: string;
+  height: number;
+}
+interface Content {
+  frames: Frame[];
+}
+
+export default function CourseHeader({
+  content,
+  progress,
+}: {
+  content: Content;
+  progress: number;
+}) {
+  const [progressBar, setProgressBar] = useState(0);
+
+  useEffect(() => {
+    const ratio = (progress / content.frames.length) * 100;
+    setProgressBar(ratio);
+  }, [progress]);
+
   return (
     <View style={styles.container}>
       <Icons name="close" size={32} />
       <View style={styles.progressBg}>
-        <View style={{ width: `${progress}%`, ...styles.progressInd }}></View>
+        <View
+          style={{ width: `${progressBar}%`, ...styles.progressInd }}
+        ></View>
       </View>
     </View>
   );

@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, View, Text } from "react-native";
 import Button from "@/app/components/button";
 import Feedback from "../components/feedback";
 
-export default function CourseContent({ content }: { content: any }) {
-  const [containerHeight, setContainerHeight] = useState(500);
+interface Frame {
+  name: number;
+  bg: string;
+  height: number;
+}
+interface Content {
+  frames: Frame[];
+}
 
-  const frames = [
-    { name: 1, bg: "lightgreen", height: 200 },
-    { name: 2, bg: "lightcoral", height: 300 },
-    { name: 3, bg: "pink", height: 400 },
-    { name: 4, bg: "lightorange", height: 200 },
-    { name: 5, bg: "beige", height: 300 },
-  ];
+export default function CourseContent({
+  content,
+  progress,
+  setProgress,
+}: {
+  content: Content;
+  progress: number;
+  setProgress: (progress: number) => void;
+}) {
+  const [containerHeight, setContainerHeight] = useState(500);
+  const [frames, setFrames] = useState<Frame[]>([]);
+
+  useEffect(() => {
+    const visibeFrames = content.frames.slice(0, progress);
+    setFrames(visibeFrames);
+  }, [progress]);
 
   return (
     <View
@@ -31,29 +46,37 @@ export default function CourseContent({ content }: { content: any }) {
           backgroundColor: "lightblue",
         }}
       >
-        {/* Frames */}
         {frames.map((frame, index) => (
           <View
             key={index}
             style={{
               height:
                 index === frames.length - 1 ? containerHeight : frame.height,
-              backgroundColor: frame.bg,
             }}
           >
             <View
               style={{
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 24 }}>{`Frame ${frame.name}`}</Text>
+              <View
+                style={{
+                  backgroundColor: frame.bg,
+                  height: frame.height,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 24 }}>{`Frame ${frame.name}`}</Text>
+              </View>
             </View>
 
             {index === frames.length - 1 && (
               <View style={{ padding: 30 }}>
-                <Button title="Jatka" onPress={() => {}} />
+                <Button
+                  title="Jatka"
+                  onPress={() => setProgress(progress + 1)}
+                />
               </View>
             )}
           </View>
