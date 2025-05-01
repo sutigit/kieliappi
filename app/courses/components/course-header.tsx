@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 import Icons from "@expo/vector-icons/Ionicons";
 
 export default function CourseHeader({
@@ -9,20 +14,24 @@ export default function CourseHeader({
   content: any;
   progress: number;
 }) {
-  const [progressBar, setProgressBar] = useState(0);
+  const width = useSharedValue(0);
 
   useEffect(() => {
     const ratio = (progress / content.frames.length) * 100;
-    setProgressBar(ratio);
+    width.value = withTiming(ratio);
   }, [progress]);
+
+  const animatedWidth = useAnimatedStyle(() => {
+    return {
+      width: `${width.value}%`,
+    };
+  });
 
   return (
     <View style={styles.container}>
       <Icons name="close" size={32} />
       <View style={styles.progressBg}>
-        <View
-          style={{ width: `${progressBar}%`, ...styles.progressInd }}
-        ></View>
+        <Animated.View style={[styles.progressInd, animatedWidth]} />
       </View>
     </View>
   );
