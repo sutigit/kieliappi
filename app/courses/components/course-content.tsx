@@ -1,7 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { findNodeHandle, ScrollView, View } from "react-native";
 import Frame from "./frame";
-import Animated from "react-native-reanimated";
+import Animated, {
+  useAnimatedRef,
+  scrollTo,
+  useSharedValue,
+  useDerivedValue,
+} from "react-native-reanimated";
 import Button from "@/app/components/button";
 import Feedback from "./feedback";
 
@@ -14,31 +19,23 @@ export default function CourseContent({
   progress: number;
   setProgress: (progress: number) => void;
 }) {
-  const scrollViewRef = useRef<Animated.ScrollView>(null);
+  const scrollViewRef = useAnimatedRef<Animated.ScrollView>();
   const frameContainerRef = useRef<View>(null);
   const frameRefs = useRef<Record<number, View>>({});
+  const scrollY = useSharedValue(0);
 
   const [containerHeight, setContainerHeight] = useState(0);
   // const [showFooter, setShowFooter] = useState(false);
 
   useEffect(() => {
     frameRefs.current[progress - 1].measure((x, y) => {
-      scrollViewRef.current?.scrollTo({
-        y,
-        animated: true,
-      });
+      scrollY.value = y;
     });
   }, [progress]);
 
-  // const handleScroll = (event: any) => {
-  //   const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
-  //   const isAtBottom =
-  //     layoutMeasurement.height + contentOffset.y >= contentSize.height - 10; // 10 for small buffer
-
-  //   if (isAtBottom) {
-  //     setShowFooter(true);
-  //   }
-  // };
+  useDerivedValue(() => {
+    scrollTo(scrollViewRef, 0, scrollY.value, true);
+  });
 
   return (
     <View
