@@ -4,7 +4,7 @@ export default function CheckButton({
   onPress,
   disabled,
 }: {
-  onPress: () => void;
+  onPress?: () => void;
   disabled?: boolean;
 }) {
   return (
@@ -14,7 +14,7 @@ export default function CheckButton({
       disabled={disabled}
       backgroundColor="#9333ea"
       borderColor="#581c87"
-      onPress={onPress}
+      onPress={onPress || (() => {})}
     />
   );
 }

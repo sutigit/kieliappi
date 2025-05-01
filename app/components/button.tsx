@@ -21,14 +21,13 @@ export default function Button({
       disabled={disabled}
       style={({ pressed }) => [
         {
-          backgroundColor: pressed ? "lightgray" : backgroundColor,
-          borderColor: borderColor,
+          backgroundColor: pressed || disabled ? "#d6d3d1" : backgroundColor,
+          borderColor: disabled ? "#a8a29e" : borderColor,
           borderWidth: 1,
           borderBottomWidth: 4,
           padding: 10,
           borderRadius: 100,
           paddingHorizontal: 30,
-          opacity: disabled ? 0.5 : 1,
         },
       ]}
     >

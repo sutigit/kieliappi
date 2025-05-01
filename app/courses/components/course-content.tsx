@@ -8,8 +8,9 @@ import Animated, {
   useDerivedValue,
 } from "react-native-reanimated";
 import Feedback from "./feedback";
-import ContinueButton from "./continue-button";
-import CheckButton from "./check-button";
+import ContinueButton from "./buttons/continue-button";
+import CheckButton from "./buttons/check-button";
+import FinishButton from "./buttons/finish-button";
 
 export default function CourseContent({
   content,
@@ -28,6 +29,10 @@ export default function CourseContent({
   const [containerHeight, setContainerHeight] = useState(0);
   const [touchBottom, setTouchBottom] = useState(false);
 
+  const [controlState, setControlState] = useState<
+    "continue" | "work" | "check" | "correct" | "incorrect" | "finish"
+  >("continue");
+
   const handleScroll = (event: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
     const isAtBottom =
@@ -45,31 +50,69 @@ export default function CourseContent({
     });
   }, [progress]);
 
+  useEffect(() => {
+    const type = content.frames[progress - 1].type;
+    if (type === "exercise") {
+      setControlState("work");
+    } else {
+      setControlState("continue");
+    }
+  }, [progress]);
+
   useDerivedValue(() => {
     scrollTo(scrollViewRef, 0, scrollY.value, true);
   });
 
   const checkExercise = () => {
-    // Implement your logic to check the exercise here
     console.log("Check exercise");
   };
 
-  const FrameControls = () => (
-    <Animated.View
-      style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: "white",
-        padding: 30,
-      }}
-    >
-      <ContinueButton onPress={() => setProgress(progress + 1)} />
-      {/* <CheckButton onPress={() => checkExercise()} /> */}
-      <Feedback answer={null} xp={10} />
-    </Animated.View>
-  );
+  const FrameControls = () => {
+    const getControl = () => {
+      switch (controlState) {
+        case "continue":
+          return (
+            <ContinueButton
+              onPress={() => {
+                setProgress(progress + 1);
+              }}
+            />
+          );
+        case "work":
+          return <CheckButton disabled />;
+
+        case "check":
+          return (
+            <CheckButton
+              onPress={() => {
+                checkExercise();
+              }}
+            />
+          );
+        case "correct":
+          return <Feedback answer={"correct"} xp={10} />;
+        case "incorrect":
+          return <Feedback answer={"wrong"} xp={10} />;
+        case "finish":
+          return <FinishButton onPress={() => {}} />;
+      }
+    };
+
+    return (
+      <Animated.View
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: "white",
+          padding: 30,
+        }}
+      >
+        {getControl()}
+      </Animated.View>
+    );
+  };
 
   return (
     <View
