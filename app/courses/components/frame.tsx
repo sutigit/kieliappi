@@ -5,37 +5,58 @@ import Feedback from "./feedback";
 
 export default function Frame({
   content,
-  isLast,
-  progress,
-  setProgress,
-  containerHeight,
-}: {
+}: // isLast,
+// progress,
+// setProgress,
+// containerHeight,
+{
   content: any;
-  isLast: boolean;
-  progress: number;
-  setProgress: (progress: number) => void;
-  containerHeight: number;
+  // isLast: boolean;
+  // progress: number;
+  // setProgress: (progress: number) => void;
+  // containerHeight: number;
 }) {
-  const [answer, setAnswer] = useState<"correct" | "wrong" | null>(null);
-
   useEffect(() => {});
 
   return (
-    <View style={{ minHeight: isLast ? containerHeight : "auto" }}>
-      <View style={{ flex: 1, padding: 20 }}>
-        {content.text.map((text: string, index: number) => (
-          <Text key={index} style={{ fontSize: 16, marginBottom: 10 }}>
-            {text}
-          </Text>
-        ))}
-      </View>
-
-      {isLast && (
-        <View style={{ padding: 30, position: "relative" }}>
-          <Button title={"Jatka"} onPress={() => setProgress(progress + 1)} />
-          <Feedback answer={answer} xp={10} />
-        </View>
-      )}
+    <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 30 }}>
+      {content.text.map((text: string, index: number) => (
+        <Text
+          key={index}
+          style={{ fontSize: 16, lineHeight: 24, marginBottom: 20 }}
+        >
+          {text}
+        </Text>
+      ))}
     </View>
   );
 }
+
+//   return (
+//     <View style={{ minHeight: isLast ? containerHeight : "auto" }}>
+//       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 30 }}>
+//         {content.text.map((text: string, index: number) => (
+//           <Text
+//             key={index}
+//             style={{ fontSize: 16, lineHeight: 24, marginBottom: 20 }}
+//           >
+//             {text}
+//           </Text>
+//         ))}
+//       </View>
+
+//       {isLast && (
+//         <View
+//           style={{
+//             padding: 30,
+//             position: "relative",
+//             backgroundColor: "white",
+//           }}
+//         >
+//           <Button title={"Jatka"} onPress={() => setProgress(progress + 1)} />
+//           <Feedback answer={null} xp={10} />
+//         </View>
+//       )}
+//     </View>
+//   );
+// }
