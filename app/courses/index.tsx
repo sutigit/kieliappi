@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Course() {
+export default function Courses() {
   return (
     <SafeAreaView
       style={{
