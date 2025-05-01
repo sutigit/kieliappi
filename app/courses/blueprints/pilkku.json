@@ -12,7 +12,7 @@
         {   
             "type": "instruction",
             "text": [
-                "Perussääntöihin kuuluu, että päälauseen ja sivulauseen väliin tulee pilkku.",
+                "Perussääntöihin kuuluu, että päälauseen ja sivulauseen väliin tulee pilkku."
             ],
             "example": [
                 "Ministeri totesi, että asia on loppuun käsitelty.",
@@ -35,10 +35,17 @@
                 "points": 5,
                 "explanation":"Se on mitä on!",
                 "response": {
-                    "correct-answer": "Aivan oikein!",
-                    "wrong-answer": "Pilkku on joskus hankala."
+                    "correct": "Aivan oikein!",
+                    "incorrect": "Pilkku on joskus hankala."
                 }
             }
+        },
+        {   
+            "type": "instruction",
+            "text": [
+                "Hieno juttu! Seuraavaksi on seuraavat"
+            ]
+            
         }
     ]
 }
