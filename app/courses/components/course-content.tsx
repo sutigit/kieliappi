@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { findNodeHandle, ScrollView, View } from "react-native";
+import { View } from "react-native";
 import Frame from "./frame";
 import Animated, {
   useAnimatedRef,
@@ -25,10 +25,21 @@ export default function CourseContent({
   const scrollY = useSharedValue(0);
 
   const [containerHeight, setContainerHeight] = useState(0);
-  // const [showFooter, setShowFooter] = useState(false);
+  const [touchBottom, setTouchBottom] = useState(false);
+
+  const handleScroll = (event: any) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const isAtBottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 5; // 5px for small buffer
+
+    if (isAtBottom) {
+      setTouchBottom(true);
+    }
+  };
 
   useEffect(() => {
     frameRefs.current[progress - 1].measure((x, y) => {
+      setTouchBottom(false);
       scrollY.value = y;
     });
   }, [progress]);
@@ -36,6 +47,22 @@ export default function CourseContent({
   useDerivedValue(() => {
     scrollTo(scrollViewRef, 0, scrollY.value, true);
   });
+
+  const FrameControls = () => (
+    <Animated.View
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "white",
+        padding: 30,
+      }}
+    >
+      <Button title={"Jatka"} onPress={() => setProgress(progress + 1)} />
+      <Feedback answer={null} xp={10} />
+    </Animated.View>
+  );
 
   return (
     <View
@@ -48,7 +75,7 @@ export default function CourseContent({
       <Animated.ScrollView
         ref={scrollViewRef}
         style={{ flex: 1 }}
-        // onScroll={(e) => handleScroll(e)}
+        onScroll={handleScroll}
         scrollEventThrottle={16} // ~60fps for better responsiveness
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
@@ -72,23 +99,9 @@ export default function CourseContent({
             </View>
           ))}
         </View>
+        <FrameControls />
       </Animated.ScrollView>
-
-      {/* {showFooter && ( */}
-      <Animated.View
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: "white",
-          padding: 30,
-        }}
-      >
-        <Button title={"Jatka"} onPress={() => setProgress(progress + 1)} />
-        <Feedback answer={null} xp={10} />
-      </Animated.View>
-      {/* )} */}
+      {touchBottom && <FrameControls />}
     </View>
   );
 }
