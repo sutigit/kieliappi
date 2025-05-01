@@ -51,14 +51,14 @@ const styles = StyleSheet.create({
     boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
   },
   progressBg: {
-    backgroundColor: "#f0f0f0",
-    height: 16,
+    backgroundColor: "#e7e5e4",
+    height: 15,
     flex: 1,
     borderRadius: 100,
     overflow: "hidden",
   },
   progressInd: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#84cc16",
     height: "100%",
   },
 });

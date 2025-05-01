@@ -1,4 +1,5 @@
 import { View, Text } from "react-native";
+import Icons from "@expo/vector-icons/Ionicons";
 
 interface Content {
   type: string;
@@ -42,13 +43,13 @@ const TextBlock = ({ text }: { text: string[] }) => (
 const Example = ({ text }: { text: string[] }) => (
   <View
     style={{
-      backgroundColor: "lightblue",
+      backgroundColor: "#e0f2fe",
+      borderColor: "#7dd3fc",
       paddingHorizontal: 10,
       paddingVertical: 15,
       borderRadius: 5,
       marginTop: 20,
       borderWidth: 1,
-      borderColor: "black",
     }}
   >
     {text.map((line, index) => (
@@ -65,7 +66,7 @@ const Exercise = ({ exercise }: { exercise: Exercise }) => (
       <View
         key={index}
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#fff7ed",
           paddingHorizontal: 18,
           paddingVertical: 12,
           borderRadius: 10,
@@ -81,7 +82,17 @@ const Exercise = ({ exercise }: { exercise: Exercise }) => (
 );
 
 const Image = ({ image }: { image: string }) => (
-  <View style={{ backgroundColor: "lightgray", height: 160 }}></View>
+  <View
+    style={{
+      backgroundColor: "#ffe4e6",
+      height: 160,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Icons name="image" size={90} color="white" />
+  </View>
 );
 
 export default function Frame({ content }: { content: Content }) {

@@ -7,8 +7,9 @@ import Animated, {
   useSharedValue,
   useDerivedValue,
 } from "react-native-reanimated";
-import Button from "@/app/components/button";
 import Feedback from "./feedback";
+import ContinueButton from "./continue-button";
+import CheckButton from "./check-button";
 
 export default function CourseContent({
   content,
@@ -48,6 +49,11 @@ export default function CourseContent({
     scrollTo(scrollViewRef, 0, scrollY.value, true);
   });
 
+  const checkExercise = () => {
+    // Implement your logic to check the exercise here
+    console.log("Check exercise");
+  };
+
   const FrameControls = () => (
     <Animated.View
       style={{
@@ -59,7 +65,8 @@ export default function CourseContent({
         padding: 30,
       }}
     >
-      <Button title={"Jatka"} onPress={() => setProgress(progress + 1)} />
+      <ContinueButton onPress={() => setProgress(progress + 1)} />
+      {/* <CheckButton onPress={() => checkExercise()} /> */}
       <Feedback answer={null} xp={10} />
     </Animated.View>
   );
