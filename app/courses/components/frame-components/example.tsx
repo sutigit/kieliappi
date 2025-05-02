@@ -13,7 +13,10 @@ const Example = ({ text }: { text: string[] }) => (
     }}
   >
     {text.map((line, index) => (
-      <Text key={index} style={{ fontSize: 16, lineHeight: 24, margin: 10 }}>
+      <Text
+        key={index}
+        style={{ fontSize: 16, lineHeight: 24, margin: 10, color: "#0c0a09" }}
+      >
         {line}
       </Text>
     ))}

@@ -12,8 +12,8 @@ export default function CheckButton({
       title="Tarkista"
       color="white"
       disabled={disabled}
-      backgroundColor="#9333ea"
-      borderColor="#581c87"
+      backgroundColor="#93c5fd" // blue 300
+      borderColor="#292524" // stone 800
       onPress={onPress || (() => {})}
     />
   );
