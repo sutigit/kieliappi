@@ -1,18 +1,5 @@
 import { View, Text } from "react-native";
-
-interface Exercise {
-  id: string;
-  type: string;
-  options?: string[];
-  starter?: string;
-  answer: string;
-  points: number;
-  explanation: string;
-  response: {
-    correct: string;
-    incorrect: string;
-  };
-}
+import type { Exercise } from "@/app/lib/types";
 
 const SelectionEx = ({
   exercise,

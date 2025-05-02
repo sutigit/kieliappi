@@ -1,34 +1,13 @@
 import { View } from "react-native";
 
+import type { Content } from "@/app/lib/types";
+
 import Image from "./image";
 import Example from "./example";
 import TextBlock from "./text-block";
 import Title from "./title";
 
 import SelectionEx from "./exercises/selection";
-
-interface Content {
-  type: string;
-  image?: string;
-  title?: string;
-  text?: string[];
-  example?: string[];
-  exercise?: Exercise;
-}
-
-interface Exercise {
-  id: string;
-  type: string;
-  options?: string[];
-  starter?: string;
-  answer: string;
-  points: number;
-  explanation: string;
-  response: {
-    correct: string;
-    incorrect: string;
-  };
-}
 
 export default function Frame({
   content,
