@@ -1,9 +1,11 @@
-import { View, Text } from "react-native";
-import Icons from "@expo/vector-icons/Ionicons";
+import { View } from "react-native";
+
 import Image from "./image";
 import Example from "./example";
 import TextBlock from "./text-block";
 import Title from "./title";
+
+import SelectionEx from "./exercises/selection";
 
 interface Content {
   type: string;
@@ -28,35 +30,6 @@ interface Exercise {
   };
 }
 
-const Exercise = ({
-  exercise,
-  action,
-}: {
-  exercise: Exercise;
-  action: () => void;
-}) => {
-  return (
-    <View style={{ marginTop: 10 }}>
-      {exercise.options?.map((option, index) => (
-        <View
-          key={index}
-          style={{
-            backgroundColor: "#fff7ed",
-            paddingHorizontal: 18,
-            paddingVertical: 12,
-            borderRadius: 10,
-            marginTop: 15,
-            borderWidth: 1,
-            borderBottomWidth: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "medium" }}>{option}</Text>
-        </View>
-      ))}
-    </View>
-  );
-};
-
 export default function Frame({
   content,
   action,
@@ -72,7 +45,7 @@ export default function Frame({
         {content.text && <TextBlock text={content.text} />}
         {content.example && <Example text={content.example} />}
         {content.exercise && (
-          <Exercise exercise={content.exercise} action={action} />
+          <SelectionEx exercise={content.exercise} action={action} />
         )}
       </View>
     </View>
