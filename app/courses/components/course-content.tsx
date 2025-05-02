@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { View } from "react-native";
-import Frame from "./frame";
+import Frame from "./frame-components/frame";
 import Animated, {
   useAnimatedRef,
   scrollTo,
@@ -30,8 +30,8 @@ export default function CourseContent({
   const [touchBottom, setTouchBottom] = useState(false);
 
   const [controlState, setControlState] = useState<
-    "continue" | "work" | "check" | "correct" | "incorrect" | "finish"
-  >("continue");
+    "static" | "work" | "check" | "correct" | "incorrect" | "finish"
+  >("static");
 
   const handleScroll = (event: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
@@ -55,7 +55,7 @@ export default function CourseContent({
     if (type === "exercise") {
       setControlState("work");
     } else {
-      setControlState("continue");
+      setControlState("static");
     }
   }, [progress]);
 
@@ -70,7 +70,7 @@ export default function CourseContent({
   const FrameControls = () => {
     const getControl = () => {
       switch (controlState) {
-        case "continue":
+        case "static":
           return (
             <ContinueButton
               onPress={() => {
@@ -80,7 +80,6 @@ export default function CourseContent({
           );
         case "work":
           return <CheckButton disabled />;
-
         case "check":
           return (
             <CheckButton
@@ -145,7 +144,7 @@ export default function CourseContent({
                 minHeight: index === progress - 1 ? containerHeight : "auto",
               }}
             >
-              <Frame content={frame} />
+              <Frame content={frame} action={() => {}} />
             </View>
           ))}
         </View>
